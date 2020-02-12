@@ -9,13 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AppController {
 
-    @Value("${msg}")
-    public String msg;
+    /*@Value("${msg}")
+    public String msg;*/
 
     @GetMapping("/")
     public ModelAndView getIndexPage(){
         ModelAndView mv = new ModelAndView("index");
-        mv.addObject("msg", msg);
+        //mv.addObject("msg", msg);
         return mv;
     }
 }
