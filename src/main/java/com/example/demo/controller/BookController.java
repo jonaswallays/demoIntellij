@@ -20,10 +20,10 @@ public class BookController {
         this.bookService=bookService;
     }
 
-    @GetMapping("/books")
+    @GetMapping("app/books")
     public ModelAndView getAllBooks(){
         List<Book> books = bookService.getallBooks();
-        ModelAndView mv = new ModelAndView("library/allBooks");
+        ModelAndView mv = new ModelAndView("app/library/allBooks");
         mv.addObject("books", books);
         return mv;
     }

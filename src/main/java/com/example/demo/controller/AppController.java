@@ -26,9 +26,9 @@ public class AppController {
         this.bookRepository=bookRepository;
     }
 
-    @GetMapping("/index")
+    @GetMapping("/app")
     public ModelAndView getIndexPage(){
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("app/index");
         //mv.addObject("msg", msg);
         return mv;
     }
