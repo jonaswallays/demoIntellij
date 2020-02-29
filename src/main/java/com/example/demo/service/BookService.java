@@ -23,4 +23,8 @@ public class BookService{
         bookRepository.findAll().forEach(books::add);
         return books;
     }
+
+    public Book saveBook(Book book){
+        return bookRepository.save(book);
+    }
 }

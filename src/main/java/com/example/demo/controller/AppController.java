@@ -16,20 +16,25 @@ import java.util.List;
 @Controller
 public class AppController {
 
-    /*@Value("${msg}")
-    public String msg;*/
-
-    BookRepository bookRepository;
+    BookService bookService;
 
     @Autowired
-    AppController(BookRepository bookRepository){
-        this.bookRepository=bookRepository;
+    public AppController(BookService bookService){
+        this.bookService=bookService;
     }
 
     @GetMapping("/app")
     public ModelAndView getIndexPage(){
         ModelAndView mv = new ModelAndView("app/index");
         //mv.addObject("msg", msg);
+        return mv;
+    }
+
+    @GetMapping("app/books")
+    public ModelAndView getAllBooks(){
+        List<Book> books = bookService.getallBooks();
+        ModelAndView mv = new ModelAndView("app/library/allBooks");
+        mv.addObject("books", books);
         return mv;
     }
 }

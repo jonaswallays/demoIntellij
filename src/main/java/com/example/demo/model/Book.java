@@ -12,7 +12,7 @@ import java.sql.Date;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name ="book_title")
@@ -29,7 +29,6 @@ public class Book {
 
     @Column(name ="publish_date")
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date publishDate;
 
     @Column(name ="publisher")
