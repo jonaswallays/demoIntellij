@@ -1,30 +1,51 @@
 <div class="form-row">
     <div class="form-group">
-        <label for="bookTitle">Book title</label>
-        <input type="text" class="form-control" th:field="${book.title}" id="bookTitle" placeholder="Book title">
+        <label for="title">Book title</label>
+        <input type="text" class="form-control" th:field="${book.title}" id="title" placeholder="Book title">
+    </div>
+    <div class="form-group">
+        <label th:if="${#fields.hasErrors('title')}" class="errorMsg" th:errors="*{title}"></label>
     </div>
     <div class="form-group">
         <label for="isbin">ISBN No</label>
         <input type="text" class="form-control" th:field="${book.isbin}" id="isbin" placeholder="ISBN No">
     </div>
     <div class="form-group">
+        <label th:if="${#fields.hasErrors('isbin')}" class="errorMsg" th:errors="*{isbin}"></label>
+    </div>
+    <div class="form-group">
         <label for="authors">Authors</label>
         <input type="text" class="form-control" th:field="${book.authors}" id="authors" placeholder="Authors">
+    </div>
+    <div class="form-group">
+    <label th:if="${#fields.hasErrors('authors')}" class="errorMsg" th:errors="*{authors}"></label>
     </div>
     <div class="form-group">
         <label for="publisher">Publisher</label>
         <input type="text" class="form-control" th:field="${book.publisher}" id="publisher" placeholder="Publisher">
     </div>
     <div class="form-group">
+        <label th:if="${#fields.hasErrors('publisher')}" class="errorMsg" th:errors="*{publisher}"></label>
+    </div>
+    <div class="form-group">
         <label for="publishDate">Publish Date</label>
         <input type="date" class="form-control" th:field="${book.publishDate}" id="publishDate" placeholder="Publish date">
+    </div>
+    <div class="form-group">
+        <label th:if="${#fields.hasErrors('publishDate')}" class="errorMsg" th:errors="*{publishDate}"></label>
     </div>
     <div class="form-group">
         <label for="price">Price</label>
         <input type="number" class="form-control" th:field="${book.price}" id="price" placeholder="Price">
     </div>
     <div class="form-group">
+        <label th:if="${#fields.hasErrors('price')}" class="errorMsg" th:errors="*{price}"></label>
+    </div>
+    <div class="form-group">
         <label for="stock">Stock</label>
         <input type="number" class="form-control" th:field="${book.stock}" id="stock" placeholder="Stock">
+    </div>
+    <div class="form-group">
+        <label th:if="${#fields.hasErrors('stock')}" class="errorMsg" th:errors="*{stock}"></label>
     </div>
 </div>
