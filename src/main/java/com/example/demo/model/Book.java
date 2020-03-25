@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.util.Objects;
 
 
 @Entity
@@ -19,7 +20,7 @@ public class Book {
     @NotNull
     private String title;
 
-    @Column(name ="isbin")
+    @Column(name ="isbin", unique = true)
     @NotNull
     private String isbin;
 

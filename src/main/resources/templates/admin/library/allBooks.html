@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <div th:replace="admin/headerImports"></div>
+</head>
+<body>
+    <div th:replace="admin/navbar"></div>
+    <div class="container">
+        <div class="container">
+            <div class="jumbotron">
+                <h1>All available books in the library: </h1>
+            </div>
+        </div>
+        <table class="table table-hover">
+            <tr>
+                <th>Book title</th>
+                <th>Authors</th>
+                <th>Release date</th>
+                <th>Publisher</th>
+                <th>Stock</th>
+                <th>Edit</th>
+            </tr>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.authors}"></td>
+                <td th:text="${#dates.format(book.publishDate, 'dd/MM/yyyy')}"></td>
+                <td th:text="${book.publisher}"></td>
+                <td th:text="${book.stock}"></td>
+                <td>
+                    <form th:method="get" th:attr="action=@{/admin/library/editbookinfo/} + ${book.isbin}">
+                        <input class="btn btn-success" type="submit" value="Edit info"/>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

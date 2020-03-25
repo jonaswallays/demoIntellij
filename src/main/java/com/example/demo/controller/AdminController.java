@@ -9,15 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -65,5 +63,29 @@ public class AdminController {
         return mv;
     }
 
+    @GetMapping("/admin/books")
+    public ModelAndView getAllBooks(){
+        List<Book> books = bookService.getallBooks();
+        ModelAndView mv = new ModelAndView("admin/library/allBooks");
+        mv.addObject("books", books);
+        return mv;
+    }
 
+    @GetMapping("/admin/library/editbookinfo/{isbin}")
+    public ModelAndView getEditPage(@PathVariable("isbin") String isbin){
+        ModelAndView mv = new ModelAndView("admin/library/editbookinfo");
+        Book book = bookService.findByIsbin(isbin);
+        mv.addObject("book", book);
+        return mv;
+    }
+
+    @PostMapping("/admin/library/editbookinfo/{isbin}")
+    public ModelAndView updateBook(@PathVariable("isbin") String isbin, @ModelAttribute("book") Book bookNew){
+        ModelAndView mv = new ModelAndView("redirect:/admin/books");
+        Book bookOld = bookService.findByIsbin(isbin);
+        bookNew.setId(bookOld.getId());
+        Book b = bookService.saveBook(bookNew);
+        mv.addObject("book", b);
+        return mv;
+    }
 }
