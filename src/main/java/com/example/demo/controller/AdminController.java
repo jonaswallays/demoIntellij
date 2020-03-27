@@ -80,12 +80,18 @@ public class AdminController {
     }
 
     @PostMapping("/admin/library/editbookinfo/{isbin}")
-    public ModelAndView updateBook(@PathVariable("isbin") String isbin, @ModelAttribute("book") Book bookNew){
+    public ModelAndView updateBook(@PathVariable("isbin") String isbin, @ModelAttribute("book") @Valid Book bookNew, BindingResult result){
         ModelAndView mv = new ModelAndView("redirect:/admin/books");
-        Book bookOld = bookService.findByIsbin(isbin);
-        bookNew.setId(bookOld.getId());
-        Book b = bookService.saveBook(bookNew);
-        mv.addObject("book", b);
-        return mv;
+        if(result.hasErrors()){
+            mv.setViewName("admin/library/editbookinfo");
+            mv.addObject("book", bookNew);
+            return mv;
+        }
+        else{
+            Book bookOld = bookService.findByIsbin(isbin);
+            bookNew.setId(bookOld.getId());
+            bookService.saveBook(bookNew);
+            return mv;
+        }
     }
 }
