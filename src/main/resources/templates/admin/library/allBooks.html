@@ -19,6 +19,7 @@
                 <th>Publisher</th>
                 <th>Stock</th>
                 <th>Edit</th>
+                <th>Delete</th>
             </tr>
             <tr th:each="book : ${books}">
                 <td th:text="${book.title}"></td>
@@ -29,6 +30,11 @@
                 <td>
                     <form th:method="get" th:attr="action=@{/admin/library/editbookinfo/} + ${book.isbin}">
                         <input class="btn btn-success" type="submit" value="Edit info"/>
+                    </form>
+                </td>
+                <td>
+                    <form th:method="post" th:attr="action=@{/admin/library/deleteBook/} + ${book.isbin}">
+                        <input class="btn btn-danger" type="submit" value="Remove"/>
                     </form>
                 </td>
             </tr>

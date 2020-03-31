@@ -32,4 +32,8 @@ public class BookService{
         return bookRepository.findByIsbin(isbin);
     }
 
+    public void deleteBookByIsbin(String isbin){
+        bookRepository.delete(bookRepository.findByIsbin(isbin));
+    }
+
 }

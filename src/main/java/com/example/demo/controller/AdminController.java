@@ -94,4 +94,11 @@ public class AdminController {
             return mv;
         }
     }
+
+    @PostMapping("/admin/library/deleteBook/{isbin}")
+    public ModelAndView deleteBook(@PathVariable("isbin") String isbin){
+        ModelAndView mv = new ModelAndView("redirect:/admin/books");
+        bookService.deleteBookByIsbin(isbin);
+        return mv;
+    }
 }
