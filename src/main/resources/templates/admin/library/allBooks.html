@@ -29,11 +29,13 @@
                 <td th:text="${book.stock}"></td>
                 <td>
                     <form th:method="get" th:attr="action=@{/admin/library/editbookinfo/} + ${book.isbin}">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         <input class="btn btn-success" type="submit" value="Edit info"/>
                     </form>
                 </td>
                 <td>
                     <form th:method="post" th:attr="action=@{/admin/library/deleteBook/} + ${book.isbin}">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         <input class="btn btn-danger" type="submit" value="Remove"/>
                     </form>
                 </td>
